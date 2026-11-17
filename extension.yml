@@ -1,56 +1,57 @@
-schema_version: "1.0"
-
+schema_version: '1.0'
 extension:
   id: crit
-  name: "Crit Review"
-  version: "0.1.0"
-  description: "Review Spec Kit specs, plans, tasks and the final diff in the browser with inline comments, then let the agent revise until you approve."
-  category: "process"
-  effect: "read-write"
+  name: Crit Review
+  version: 0.1.0
+  description: >-
+    Review Spec Kit specs, plans, tasks and the final diff in the browser with
+    inline comments, then let the agent revise until you approve.
+  category: process
+  effect: read-write
   author: spec-kit-contrib
   repository: https://github.com/spec-kit-contrib/spec-kit-crit
   license: MIT
   homepage: https://github.com/spec-kit-contrib/spec-kit-crit
-
 requires:
-  speckit_version: ">=1.4.0"
+  speckit_version: '>=1.4.0'
   tools:
     - name: crit
       required: true
-
 provides:
   commands:
     - name: speckit.crit.review
       file: commands/speckit.crit.review.md
-      description: "Review the current feature's spec, plan and tasks in Crit and revise them from your inline comments"
+      description: >-
+        Review the current feature's spec, plan and tasks in Crit and revise
+        them from your inline comments
     - name: speckit.crit.diff
       file: commands/speckit.crit.diff.md
-      description: "Review the implementation diff in Crit and fix the code from your inline comments"
-
+      description: >-
+        Review the implementation diff in Crit and fix the code from your inline
+        comments
 hooks:
   after_specify:
     command: speckit.crit.review
     optional: true
-    prompt: "Review the spec in Crit?"
-    description: "Open the new spec in Crit for inline review"
+    prompt: Review the spec in Crit?
+    description: Open the new spec in Crit for inline review
   after_plan:
     command: speckit.crit.review
     optional: true
-    prompt: "Review the plan in Crit?"
-    description: "Open the spec and plan in Crit for inline review"
+    prompt: Review the plan in Crit?
+    description: Open the spec and plan in Crit for inline review
   after_tasks:
     command: speckit.crit.review
     optional: true
-    prompt: "Review the tasks in Crit?"
-    description: "Open the spec, plan and tasks in Crit for inline review"
+    prompt: Review the tasks in Crit?
+    description: Open the spec, plan and tasks in Crit for inline review
   after_implement:
     command: speckit.crit.diff
     optional: true
-    prompt: "Review the implementation diff in Crit?"
-    description: "Open the branch diff in Crit for inline review"
-
+    prompt: Review the implementation diff in Crit?
+    description: Open the branch diff in Crit for inline review
 tags:
-  - "review"
-  - "crit"
-  - "code-review"
-  - "workflow"
+  - review
+  - crit
+  - code-review
+  - workflow
