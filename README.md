@@ -94,14 +94,26 @@ documentation for the port, the author name and the config files.
 
 ## Development
 
-Install your working copy into a scratch Spec Kit project and edit the command
-files under `commands/`:
+The toolchain comes from the Nix flake. With [direnv](https://direnv.net/) the
+shell loads on `cd`; without it, run `nix develop`. A dev container with Nix is
+in `.devcontainer/`.
+
+```bash
+nix develop --command bats tests/   # validate the manifest and command files
+```
+
+To try a change, install your working copy into a scratch Spec Kit project and
+edit the command files under `commands/`:
 
 ```bash
 specify extension add --dev /path/to/spec-kit-crit
 ```
 
 Reinstall after changing `extension.yml` or a command file.
+
+Releases are cut by [release-please](https://github.com/googleapis/release-please)
+from [Conventional Commits](https://www.conventionalcommits.org/); it also
+keeps the version in `extension.yml` in step.
 
 ## The spec-kit-contrib Ecosystem
 

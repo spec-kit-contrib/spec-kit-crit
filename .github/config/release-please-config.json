@@ -1,0 +1,14 @@
+{
+  "packages": {
+    ".": {
+      "release-type": "simple",
+      "extra-files": [
+        {
+          "type": "yaml",
+          "path": "extension.yml",
+          "jsonpath": "$.extension.version"
+        }
+      ]
+    }
+  }
+}
