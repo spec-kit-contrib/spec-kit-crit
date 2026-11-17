@@ -10,6 +10,7 @@ extension:
   author: spec-kit-contrib
   repository: https://github.com/spec-kit-contrib/spec-kit-crit
   license: MIT
+  homepage: https://github.com/spec-kit-contrib/spec-kit-crit
 
 requires:
   speckit_version: ">=1.4.0"

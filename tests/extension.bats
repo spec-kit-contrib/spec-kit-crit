@@ -9,7 +9,7 @@ setup() {
 @test "manifest has a valid id and a semver version" {
   id="$(yq '.extension.id' "$MANIFEST")"
   version="$(yq '.extension.version' "$MANIFEST")"
-  [[ "$id" =~ ^[a-z0-9-]+$ ]]
+  [[ "$id" =~ ^[a-z][a-z0-9-]*$ ]]
   [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
 }
 
@@ -57,4 +57,13 @@ setup() {
   config="$ROOT/.github/config/release-please-config.json"
   [ "$(jq -r '.packages["."]["extra-files"][0].path' "$config")" = "extension.yml" ]
   [ "$(jq -r '.packages["."]["extra-files"][0].jsonpath' "$config")" = '$.extension.version' ]
+}
+
+@test "manifest meets the community catalog metadata rules" {
+  [ "$(yq '.extension.description | length' "$MANIFEST")" -lt 200 ]
+  [ "$(yq '.tags | length' "$MANIFEST")" -ge 2 ]
+  [ "$(yq '.tags | length' "$MANIFEST")" -le 5 ]
+  [ "$(yq '.extension.repository' "$MANIFEST")" = "$(yq '.extension.homepage' "$MANIFEST")" ]
+  [ -f "$ROOT/README.md" ]
+  [ -f "$ROOT/LICENSE" ]
 }
